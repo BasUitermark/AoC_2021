@@ -2,29 +2,24 @@
 using System;
 using System.IO;
 
-namespace CS_Puzzle01
+namespace CS_Puzzle02
 {
-	class puzzle01
+	class puzzle02
 	{
-		// static int	[]SumCount(string []array, int i)
-		// {
-		// 	int	[]store = {0, 0};
-
-		// 	store[0] = int.Parse(array[i]) + int.Parse(array[i + 1]) + int.Parse(array[i + 2]);
-		// 	store[1] = int.Parse(array[i - 1]) + int.Parse(array[i]) + int.Parse(array[i + 1]);
-		// 	return (store);
-		// }
+		static void SumCount(string []array, int i, int []store)
+		{
+			store[0] = int.Parse(array[i]) + int.Parse(array[i + 1]) + int.Parse(array[i + 2]);
+			store[1] = int.Parse(array[i - 1]) + int.Parse(array[i]) + int.Parse(array[i + 1]);
+		}
 		static int	ReadArray(string []array)
 		{
 			int	i = 1;
 			int	count = 0;
-			int	[]store = new int[3];
+			int	[]store = new int[2];
 		
-			while (i < array.Length)
+			while (i + 2 < array.Length)
 			{
-				store[0] = int.Parse(array[i]) + int.Parse(array[i + 1]) + int.Parse(array[i + 2]);
-				store[1] = int.Parse(array[i - 1]) + int.Parse(array[i]) + int.Parse(array[i + 1]);
-				// store = SumCount(array, i);
+				SumCount(array, i, store);
 				if (store[0] > store[1])
 					count++;
 				i++;
@@ -36,7 +31,7 @@ namespace CS_Puzzle01
 			string	[]array;
 		
 			array = File.ReadAllLines(@"input.txt");
-			Console.WriteLine(ReadArray(array));
+			Console.WriteLine("Answer is: " + ReadArray(array));
 		}
 	}
 }
