@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "EnOK4v7kIN1xl1okahRZaBCXWQnINMdzPLGjYndO/Kavnu8lKjVtT9/FXtq5IGVnqU4+QvUhPxllWDpcCMhRLQ==",
+  "success": true,
+  "projectFilePath": "/home/buiterma/Documents/Codam42/AoC_2021/Day01/C#_Puzzle01/C#_Puzzle01.csproj",
+  "expectedPackageFiles": [
+    "/home/buiterma/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}

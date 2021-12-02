@@ -4,11 +4,20 @@
 #include "../../libft/libft.h"
 
 /*
+//== INSTRUCTIONS ==//
+Calculate the horizontal position and depth you would have after following the planned course. 
+What do you get if you multiply your final horizontal position by your final depth?
+
+- Forward X increases the horizontal position by X units.
+- Down X increases the depth by X units.
+- Up X decreases the depth by X units.
+
+//== Location 
 location[0] = Position	(Forward)
 location[1] = Depth		(Up-, Down+)
 */
 
-int	*read_location(char **array, int i, int *location)
+void	read_location(char **array, int i, int *location)
 {
 	while (array[i])
 	{
