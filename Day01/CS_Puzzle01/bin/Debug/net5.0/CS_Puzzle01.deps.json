@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "CS_Puzzle01/1.0.0": {
+        "runtime": {
+          "CS_Puzzle01.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "CS_Puzzle01/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

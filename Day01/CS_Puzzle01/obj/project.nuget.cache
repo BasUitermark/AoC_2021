@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "EnOK4v7kIN1xl1okahRZaBCXWQnINMdzPLGjYndO/Kavnu8lKjVtT9/FXtq5IGVnqU4+QvUhPxllWDpcCMhRLQ==",
+  "dgSpecHash": "pVuM/pSMt/nrh8z3RrSL2dc9mbU2WUHjMP5JfD3zWZQS5ujJxH2s5mX/5JkNdH4D59XZiPuy7Ng+YOyVP8D/kA==",
   "success": true,
-  "projectFilePath": "/home/buiterma/Documents/Codam42/AoC_2021/Day01/C#_Puzzle01/C#_Puzzle01.csproj",
+  "projectFilePath": "/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle01/CS_Puzzle01.csproj",
   "expectedPackageFiles": [
     "/home/buiterma/.nuget/packages/microsoft.aspnetcore.app.ref/5.0.0/microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512"
   ],

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/buiterma/Documents/Codam42/AoC_2021/Day01/C#_Puzzle01/C#_Puzzle01.csproj": {}
+    "/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle01/CS_Puzzle01.csproj": {}
   },
   "projects": {
-    "/home/buiterma/Documents/Codam42/AoC_2021/Day01/C#_Puzzle01/C#_Puzzle01.csproj": {
+    "/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle01/CS_Puzzle01.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/buiterma/Documents/Codam42/AoC_2021/Day01/C#_Puzzle01/C#_Puzzle01.csproj",
-        "projectName": "C#_Puzzle01",
-        "projectPath": "/home/buiterma/Documents/Codam42/AoC_2021/Day01/C#_Puzzle01/C#_Puzzle01.csproj",
+        "projectUniqueName": "/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle01/CS_Puzzle01.csproj",
+        "projectName": "CS_Puzzle01",
+        "projectPath": "/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle01/CS_Puzzle01.csproj",
         "packagesPath": "/home/buiterma/.nuget/packages/",
-        "outputPath": "/home/buiterma/Documents/Codam42/AoC_2021/Day01/C#_Puzzle01/obj/",
+        "outputPath": "/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle01/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/buiterma/.nuget/NuGet/NuGet.Config"

@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "/home/buiterma/.dotnet/store/|arch|/|tfm|",
+      "/home/buiterma/.nuget/packages"
+    ]
+  }
+}

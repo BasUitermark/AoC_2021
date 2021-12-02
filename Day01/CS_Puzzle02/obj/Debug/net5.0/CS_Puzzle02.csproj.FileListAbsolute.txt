@@ -1,0 +1,16 @@
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/obj/Debug/net5.0/CS_Puzzle02.csproj.AssemblyReference.cache
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/obj/Debug/net5.0/CS_Puzzle02.GeneratedMSBuildEditorConfig.editorconfig
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/obj/Debug/net5.0/CS_Puzzle02.AssemblyInfoInputs.cache
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/obj/Debug/net5.0/CS_Puzzle02.AssemblyInfo.cs
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/obj/Debug/net5.0/CS_Puzzle02.csproj.CoreCompileInputs.cache
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/bin/Debug/net5.0/CS_Puzzle02
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/bin/Debug/net5.0/CS_Puzzle02.deps.json
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/bin/Debug/net5.0/CS_Puzzle02.runtimeconfig.json
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/bin/Debug/net5.0/CS_Puzzle02.runtimeconfig.dev.json
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/bin/Debug/net5.0/CS_Puzzle02.dll
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/bin/Debug/net5.0/ref/CS_Puzzle02.dll
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/bin/Debug/net5.0/CS_Puzzle02.pdb
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/obj/Debug/net5.0/CS_Puzzle02.dll
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/obj/Debug/net5.0/ref/CS_Puzzle02.dll
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/obj/Debug/net5.0/CS_Puzzle02.pdb
+/home/buiterma/Documents/Codam42/AoC_2021/Day01/CS_Puzzle02/obj/Debug/net5.0/CS_Puzzle02.genruntimeconfig.cache
