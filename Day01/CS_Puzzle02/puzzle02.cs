@@ -18,7 +18,7 @@ namespace CS_Puzzle01
 		{
 			int	i = 1;
 			int	count = 0;
-			int	[]store = new int[2];
+			int	[]store = new int[3];
 		
 			while (i < array.Length)
 			{
