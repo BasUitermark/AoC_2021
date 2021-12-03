@@ -4,24 +4,26 @@
 #include "../../libft/libft.h"
 
 /*
-//== INSTRUCTIONS ==//
-Calculate the horizontal position and depth you would have after following the planned course. 
-What do you get if you multiply your final horizontal position by your final depth?
+/== INSTRUCTIONS ==/
+Calculate the horizontal position and depth you would have 
+after following the planned course. 
+What do you get if you multiply your final horizontal position 
+by your final depth?
 
-- forward X increases the horizontal position by X units.
-- down X increases the depth by X units.
-- up X decreases the depth by X units.
+- Forward X increases the horizontal position by X units.
+- Down X increases the depth by X units.
+- Up X decreases the depth by X units.
 
-
+/== Location ==/
 location[0] = Position	(Forward)
-location[1] = Depth		(Aim * Position_addition)(Triggered by Position)
-location[2] = Aim		(Up-, Down+)
+location[1] = Depth		(Up-, Down+)
 */
 
 void	read_location(char **array, int i, int *location)
 {
-	int	tempPos = 0;
+	int	tempPos;
 
+	tempPos = 0;
 	while (array[i])
 	{
 		if (array[i][0] == 'f')
@@ -47,9 +49,10 @@ int	read_instruct(int fd)
 {
 	char	**array;
 	char	temp[10000];
-	int		location[3] = {0, 0, 0};
-	int		i = 0;
+	int		location[3];
+	int		i;
 
+	i = 0;
 	read(fd, temp, 10000);
 	array = ft_split(temp, '\n');
 	read_location(array, i, location);
@@ -61,7 +64,6 @@ int	main(void)
 	int	fd;
 
 	fd = open("input.txt", O_RDONLY);
-	// read_instruct(fd);
 	printf("Product: %d\n", read_instruct(fd));
 	close(fd);
 }

@@ -3,21 +3,22 @@
 #include <fcntl.h>
 #include "../../libft/libft.h"
 
-int	sum_count(char **array, int i, int *store)
+int	sum_calc(char **array, int i)
 {
-	store[0] = ft_atoi(array[i]) + ft_atoi(array[i + 1]) + ft_atoi(array[i + 2]);
-	store[1] = ft_atoi(array[i - 1]) + ft_atoi(array[i]) + ft_atoi(array[i + 1]);
+	return (ft_atoi(array[i]) + ft_atoi(array[i + 1]) + ft_atoi(array[i + 2]));
 }
 
 int	read_num(char **array, int i)
 {
-	int	count = 0;
-	int	store[2] = {0, 0};
+	int	count;
+	int	sum[2];
 
+	count = 0;
 	while (array[i + 2])
 	{
-		sum_count(array, i, store);
-		if (store[0] > store[1])
+		sum[0] = sum_calc(array, i);
+		sum[1] = sum_calc(array, i - 1);
+		if (sum[0] > sum[1])
 			count++;
 		i++;
 	}
@@ -28,8 +29,9 @@ int	read_instruct(int fd)
 {
 	char	**array;
 	char	temp[10000];
-	int		i = 1;
+	int		i;
 
+	i = 1;
 	read(fd, temp, 10000);
 	array = ft_split(temp, '\n');
 	return (read_num(array, i));
