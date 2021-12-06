@@ -57,19 +57,61 @@ int	*count_num(char **array, int i, int j, int *count_num)
 	}
 }
 
+// int	count_num(char **array, int i, int j)
+// {
+// 	int	num1;
+// 	int	num2;
+
+// 	num1 = 0;
+// 	num2 = 0;
+// 	i = 0;
+// 	while (array[i])
+// 	{
+// 		if (array[i][j] == '0')
+// 			num1++;
+// 		else
+// 			num2++;
+// 		i++;
+// 	}
+// 	if (num1 > num2)
+// 		return (0);
+// 	else
+// 		return (1);
+// }
+
 int	read_instruct(int fd)
 {
 	char	**array;
+	char	**tempArray;
 	int		count[2];
 	char	temp[10000];
 	int		i;
 	int		j;
-
+ 
 	i = 0;
 	j = 0;
 	read(fd, temp, 10000);
 	array = ft_split(temp, '\n');
+	tempArray = (char **)malloc(13 * 6 * sizeof(char));
+	while (array[i][j])
+	{
+		count_num(array, i, j, count);
+		tempArray = (char **)realloc(tempArray, count[1] * 13 * sizeof(char));
+		while (array[i])
+		{
+			if (array[i][j] == '0' && count[0] == 0)
+				tempArray[i] = array[i];
+			else if (array[i][j] == '1' && count[0] == 1)
+				tempArray[i] = array[i];
+				i++;
+		}
+		i = 0;
+		array = (char **)realloc(array, count[1] * 13 * sizeof(char));
+		array = tempArray;
+		j++;
+	}
 	// printf("num: %d\ncount: %d\n", count[0], count[1]);
+	printf("%s\n", array[0]);
 
 	return (0);
 }

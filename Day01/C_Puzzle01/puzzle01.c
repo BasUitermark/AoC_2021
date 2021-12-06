@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include "../../libft/libft.h"
+#include "../../../libft/libft.h"
 
 int	read_num(char **array, int i)
 {
