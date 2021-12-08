@@ -20,7 +20,19 @@ COL 5: 4, 9, 14, 19, 24
 4. Check boards for completion
 */
 
-t_list	*list_fill(char **array)
+void	printList(t_list *n)
+{
+	int	i = 0;
+
+	while (n != NULL)
+	{
+		printf("%d: %s\n", i, n->content);
+		n = n->next;
+		i++;
+	}
+}
+
+t_list	*list_fill(void **array)
 {
 	t_list	*list = NULL;
 	t_list	*start = NULL;
@@ -63,20 +75,29 @@ t_list	*list_fill(char **array)
 
 int	read_instruct(FILE *fd)
 {
-	char	input_temp[104];
-	char	board_temp[77];
-	int		b_read;
+	char		input_temp[104];
+	char		board_temp[77];
+	char		**board_array;
+	size_t		b_read;
 	size_t		i = 0;
 
 	b_read = 1;
 	fgets(input_temp, 103, fd);
 	input_temp[103] = '\0';
-	while (b_read > 1)
+	while (b_read >= 1)
 	{
-		fread(board_temp, 1, 76, fd);
+		b_read = fread(board_temp, 1, 76, fd);
 		board_temp[76] = '\0';
-		
+		board_array = ft_split(board_temp, '\n');
+		while (board_array[i])
+		{
+			printf("%s\n", board_array[i]);
+			i++;
+		}
+		printf("\n");
+		i = 0;
 	}
+	// printf("%s\n", board_temp);
 	return (0);
 }
 
