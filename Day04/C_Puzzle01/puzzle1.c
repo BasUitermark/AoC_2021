@@ -23,81 +23,73 @@ COL 5: 4, 9, 14, 19, 24
 void	printList(t_list *n)
 {
 	int	i = 0;
+	int	j = 0;
 
 	while (n != NULL)
 	{
-		printf("%d: %s\n", i, n->content);
-		n = n->next;
-		i++;
-	}
-}
-
-t_list	*list_fill(void **array)
-{
-	t_list	*list = NULL;
-	t_list	*start = NULL;
-	int		i;
-
-	i = 0;
-	while (array[i])
-	{
-		if (!list)
+		while (i < 25)
 		{
-			ft_lstadd_back(&list, ft_lstnew(array[i]));
-			start = list;
+			printf("%d: %d\n", j + 1, ((int *)n->content)[i]);
+			i++;
+			j++;
 		}
-		else
-			ft_lstadd_back(&list, ft_lstnew(array[i]));
-		i++;
+		i = 0;
+		n = n->next;
 	}
-	return (start);
 }
 
-// int	read_instruct(FILE *fd)
+// t_list	*list_fill(void *array)
 // {
-// 	char	input_temp[104];
-// 	char	board_temp[77];
-// 	int		b_read;
-// 	size_t		i = 0;
+// 	t_list	*list = NULL;
+// 	t_list	*start = NULL;
+// 	int		i;
 
-// 	b_read = 1;
-// 	fgets(input_temp, 103, fd);
-// 	fread(board_temp, 1, 76, fd);
-// 	input_temp[103] = '\0';
-// 	board_temp[76] = '\0';
-// 	printf("input: %s\n", input_temp);
-// 	printf("input: %s\n", board_temp);
-
-// 	fread(board_temp, 1, 76, fd);
-// 	printf("input: %s\n", board_temp);
-// 	return (0);
+// 	i = 0;
+// 	while (array)
+// 	{
+// 		if (!list)
+// 		{
+// 			ft_lstadd_back(&list, ft_lstnew(array));
+// 			start = list;
+// 		}
+// 		else
+// 			ft_lstadd_back(&list, ft_lstnew(array));
+// 		i++;
+// 	}
+// 	return (start);
 // }
 
 int	read_instruct(FILE *fd)
 {
-	char		input_temp[104];
-	char		board_temp[77];
-	char		**board_array;
+	char		input_read[104];
+	char		board_read[77];
+	int			board_num[25];
+	t_list		*num = NULL;
 	size_t		b_read;
 	size_t		i = 0;
+	size_t		j = 0;
+	size_t		count = 0;
 
 	b_read = 1;
-	fgets(input_temp, 103, fd);
-	input_temp[103] = '\0';
+	fgets(input_read, 103, fd);
+	input_read[103] = '\0';
 	while (b_read >= 1)
 	{
-		b_read = fread(board_temp, 1, 76, fd);
-		board_temp[76] = '\0';
-		board_array = ft_split(board_temp, '\n');
-		while (board_array[i])
+		b_read = fread(board_read, 1, 76, fd);
+		board_read[76] = '\0';
+		while (board_read[j] != '\0' && count < 3)
 		{
-			printf("%s\n", board_array[i]);
+			board_num[i] = ft_atoi(&board_read[j]);
 			i++;
+			j += 3;
+			ft_lstadd_back(&num, ft_lstnew(board_num));
+			count++;
 		}
-		printf("\n");
 		i = 0;
+		j = 0;
 	}
-	// printf("%s\n", board_temp);
+	// printf("%d\n", count);
+	printList(num);
 	return (0);
 }
 
