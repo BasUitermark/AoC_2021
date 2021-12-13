@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   puzzle1.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: buiterma <buiterma@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2021/12/13 16:24:10 by buiterma      #+#    #+#                 */
+/*   Updated: 2021/12/13 20:17:04 by buiterma      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 /*
@@ -19,77 +31,68 @@ COL 5: 4, 9, 14, 19, 24
 3. Input number in boards
 4. Check boards for completion
 */
-
-void	printList(t_list *n)
+static int	*input_handler(FILE *fd)
 {
-	int	i = 0;
-	int	j = 0;
+	char		input_read[73];
+	static int	input[27];
+	size_t		y = 0;
+	size_t		i = 0;
 
-	while (n != NULL)
+	fgets(input_read, 72, fd);
+	while (y < 27)
 	{
-		while (i < 25)
-		{
-			printf("%d: %d\n", j + 1, ((int *)n->content)[i]);
+		input[y] = ft_atoi(&input_read[i]);
+		i += 2;
+		if (input_read[i] == ',')
 			i++;
-			j++;
-		}
-		i = 0;
-		n = n->next;
+		y++;
 	}
+	return (input);
 }
 
-// t_list	*list_fill(void *array)
-// {
-// 	t_list	*list = NULL;
-// 	t_list	*start = NULL;
-// 	int		i;
+static int	***board_handler(FILE *fd)
+{
+	char	board_read[77];
+	int		***board;
+	size_t	i = 0;
+	size_t	num = 0;
+	size_t	x = 0;
+	size_t	y = 0;
 
-// 	i = 0;
-// 	while (array)
-// 	{
-// 		if (!list)
-// 		{
-// 			ft_lstadd_back(&list, ft_lstnew(array));
-// 			start = list;
-// 		}
-// 		else
-// 			ft_lstadd_back(&list, ft_lstnew(array));
-// 		i++;
-// 	}
-// 	return (start);
-// }
+	board = (int ***)ft_calloc(3, sizeof(int **));
+	while (num < 3)
+	{
+		fread(board_read, 1, 76, fd);
+		board[num] = (int **)ft_calloc(5, sizeof(int *));
+		while (x < 5)
+		{
+			board[num][x] = (int *)ft_calloc(5, sizeof(int));
+			while (y < 5)
+			{
+				board[num][x][y] = ft_atoi(&board_read[i]);
+				i += 3;
+				y++;
+			}
+			y = 0;
+			x++;
+		}
+		x = 0;
+		i = 0;
+		num++;
+	}
+	return (board);
+}
 
 int	read_instruct(FILE *fd)
 {
-	char		input_read[104];
-	char		board_read[77];
-	int			board_num[25];
-	t_list		*num = NULL;
-	size_t		b_read;
-	size_t		i = 0;
-	size_t		j = 0;
-	size_t		count = 0;
+	int		***board;
+	int		*input;
+	input = input_handler(fd);
+	board = board_handler(fd);
 
-	b_read = 1;
-	fgets(input_read, 103, fd);
-	input_read[103] = '\0';
-	while (b_read >= 1)
-	{
-		b_read = fread(board_read, 1, 76, fd);
-		board_read[76] = '\0';
-		while (board_read[j] != '\0' && count < 3)
-		{
-			board_num[i] = ft_atoi(&board_read[j]);
-			i++;
-			j += 3;
-			ft_lstadd_back(&num, ft_lstnew(board_num));
-			count++;
-		}
-		i = 0;
-		j = 0;
-	}
-	// printf("%d\n", count);
-	printList(num);
+	//== Debug ==//
+	printf("Input:	%d\n", input[0]);
+	printf("Board:	%d\n", board[0][0][2]);
 	return (0);
 }
 
