@@ -6,7 +6,7 @@ static void	print_array(int ***board)
 	size_t	x = 0;
 	size_t	y = 0;
 
-	while (num < 3)
+	while (num < MAX_BOARD)
 	{
 		while (x < 5)
 		{
@@ -27,13 +27,13 @@ static void	print_array(int ***board)
 
 static int	*input_handler(FILE *fd)
 {
-	char		input_read[73];//292
-	static int	input[27];//100
+	char		input_read[INPUT_READ];
+	static int	input[MAX_INPUT];
 	size_t		y = 0;
 	size_t		i = 0;
 
-	fgets(input_read, 72, fd);
-	while (y < 27)
+	fgets(input_read, INPUT_READ - 1, fd);
+	while (y < MAX_INPUT)
 	{
 		input[y] = ft_atoi(&input_read[i]);
 		i += 2;
@@ -53,8 +53,8 @@ static int	***board_handler(FILE *fd)
 	size_t	x = 0;
 	size_t	y = 0;
 
-	board = (int ***)ft_calloc(3, sizeof(int **));
-	while (num < 3)
+	board = (int ***)ft_calloc(MAX_BOARD, sizeof(int **));
+	while (num < MAX_BOARD)
 	{
 		fread(board_read, 1, 76, fd);
 		board[num] = (int **)ft_calloc(5, sizeof(int *));
@@ -86,16 +86,19 @@ static int	check_board(int ***board)
 	size_t	y = 0;
 
 	//== Check y axis ==//
-	while (num < 3)
+	while (num < MAX_BOARD)
 	{
 		while (x < 5)
 		{
 			while (y < 5)
 			{
-				if (board[num][x][y] == -1)
+				if (board[num][x][y] == -1 )
 					y_axis++;
 				if (y_axis == 5)
+				{
+					// printf("BINGO Y\n");
 					return (num);
+				}
 				y++;
 			}
 			y_axis = 0;
@@ -109,7 +112,7 @@ static int	check_board(int ***board)
 	x = 0;
 	y = 0;
 	//== Check x axis ==//
-	while (num < 3)
+	while (num < MAX_BOARD)
 	{
 		while (y < 5)
 		{
@@ -118,7 +121,10 @@ static int	check_board(int ***board)
 				if (board[num][x][y] == -1)
 					x_axis++;
 				if (x_axis == 5)
+				{
+					// printf("BINGO X\n");
 					return (num);
+				}
 				x++;
 			}
 			x_axis = 0;
@@ -128,7 +134,7 @@ static int	check_board(int ***board)
 		y = 0;
 		num++;
 	}
-	return (0);
+	return (-1);
 }
 
 static void	calc_number(int **board, int input)
@@ -141,7 +147,7 @@ static void	calc_number(int **board, int input)
 	{
 		while (y < 5)
 		{
-			if (board[x][y] > 0)
+			if (board[x][y] >= 0)
 				sum += board[x][y];
 			y++;
 		}
@@ -151,16 +157,35 @@ static void	calc_number(int **board, int input)
 	printf("%d\n", sum * input);
 }
 
+static void	refill_board(int **board)
+{
+	size_t	x = 0;
+	size_t	y = 0;
+
+	while (x < 5)
+	{
+		while (y < 5)
+		{
+			board[x][y] = -2;
+			y++;
+		}
+		y = 0;
+		x++;
+	}
+}
+
 static void	board_fill(int *input, int ***board)
 {
 	size_t	i = 0;
 	size_t	num = 0;
 	size_t	x = 0;
 	size_t	y = 0;
+	size_t	bingo = 0;
+	size_t	board_num = 0;
 
-	while (i < 27)
+	while (i < MAX_INPUT)
 	{
-		while (num < 3)
+		while (num < MAX_BOARD)
 		{
 			while (x < 5)
 			{
@@ -168,10 +193,22 @@ static void	board_fill(int *input, int ***board)
 				{
 					if (input[i] == board[num][x][y])
 						board[num][x][y] = -1;
-					if (check_board(board) != 0)
+					board_num = check_board(board);
+					if (check_board(board) >= 0)
 					{
-						calc_number(board[check_board(board)], input[i]);
-						return ;
+						if (bingo == MAX_BOARD - 1)
+						{
+							printf("BINGO!\n");
+							calc_number(board[board_num], input[i]);
+							return ;
+						}
+						else
+						{
+							refill_board(board[board_num]);
+							y = 5;
+							x = 5;
+							bingo++;
+						}
 					}
 					y++;
 				}
@@ -183,8 +220,8 @@ static void	board_fill(int *input, int ***board)
 		}
 		num = 0;
 		i++;
+		// printf("%d\n", i);
 	}
-	// print_array(board);
 }
 
 int	read_instruct(FILE *fd)
@@ -203,7 +240,7 @@ int	main(void)
 {
 	FILE	*fd;
 
-	fd = fopen("test.txt", "r");
+	fd = fopen("input.txt", "r");
 	read_instruct(fd);
 	fclose(fd);
 }
