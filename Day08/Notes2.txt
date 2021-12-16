@@ -1,0 +1,71 @@
+   0:      1:      2:      3:      4:
+  aaaa    ....    aaaa    aaaa    ....
+ b    c  .    c  .    c  .    c  b    c
+ b    c  .    c  .    c  .    c  b    c
+  ....    ....    dddd    dddd    dddd
+ e    f  .    f  e    .  .    f  .    f
+ e    f  .    f  e    .  .    f  .    f
+  gggg    ....    gggg    gggg    ....
+
+   5:      6:      7:      8:      9:
+  aaaa    aaaa    aaaa    aaaa    aaaa
+ b    .  b    .  .    c  b    c  b    c
+ b    .  b    .  .    c  b    c  b    c
+  dddd    dddd    ....    dddd    dddd
+ .    f  e    f  .    f  e    f  .    f
+ .    f  e    f  .    f  e    f  .    f
+  gggg    gggg    ....    gggg    gggg
+
+fgaebd cg bdaec gdafb agbcfd gdcbef bgcad gfac gcb cdgabef |
+ cg cg fdcagb cbg
+
+10 Digit:
+ab		-> N2			= 1
+dab		-> N3			= 7
+eafb	-> N4			= 4
+cdfbe	-> N5 + S2		= 5
+acedgfb	-> N7			= 8
+gcdfa	-> N5 + S3		= 2
+fbcad	-> N5 + S1		= 3
+cefabd	-> N6 + S2 + S1	= 9
+cdfgeb	-> N6 + S2 + S3	= 6
+cagedb	-> N6 + S1 + S3 = 0
+
+4 Digit:
+cdfeb	-> 5
+fcadb	-> 3
+cdfeb	-> 5
+cdbaf	-> 3
+
+Segments: 
+S0 d	->	a
+S2 ef	->	b
+S1 ab	->	c
+S2 ef	->	d
+S3 cg	->	e
+S1 ab	->	f
+S3 cg	->	g
+
+Key:
+N6 + S1 + S3	= 0
+N2				= 1
+N5 + S3			= 2
+N5 + S1			= 3
+N4				= 4
+N5 + S2			= 5
+N6 + S2 + S3	= 6
+N3				= 7
+N7				= 8
+N6 + S2 + S1	= 9
+
+
+Num 0 ->	abcefg	(N6) S1 + S3
+Num 1 ->	cf		(N2) Unique
+Num 2 ->	acdeg	(N5) S3
+Num 3 ->	acdfg	(N5) S1
+Num 4 ->	bcdf	(N4) Unique
+Num 5 ->	abdfg	(N5) S2
+Num 6 ->	abdefg	(N6) S2 + S3
+Num 7 ->	acf		(N3) Unique
+Num 8 ->	abcdefg	(N7) Unique
+Num 9 ->	abcdfg	(N6) S2 + S1

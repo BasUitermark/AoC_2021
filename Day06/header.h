@@ -6,9 +6,12 @@
 # include <stdio.h>
 # include "../../libft/include/libft.h"
 
-// # define BOARD_SIZE 10
-// # define INPUT_ROWS 10
+// # define DAYS 256
+// # define FISH 5
+// # define FILE_SIZE 9
 
-# define BOARD_SIZE 1000
-# define INPUT_ROWS 500
+# define DAYS 256
+# define FISH 300
+# define FILE_SIZE 599
+
 #endif

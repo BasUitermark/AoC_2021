@@ -4,11 +4,13 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
+# include <math.h>
 # include "../../libft/include/libft.h"
 
-// # define BOARD_SIZE 10
-// # define INPUT_ROWS 10
+// # define CRABS 10
+// # define FILE_SIZE 21
 
-# define BOARD_SIZE 1000
-# define INPUT_ROWS 500
+# define CRABS 1000
+# define FILE_SIZE 3887
+
 #endif

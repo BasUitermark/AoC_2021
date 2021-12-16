@@ -168,7 +168,7 @@ static void fill_downleft(int start_x, int start_y, int end_x, int end_y, int **
 {
 	while (start_x >= end_x && start_y <= end_y)
 	{
-		board[start_x][start_y] += 1;
+		board[start_y][start_x] += 1;
 		start_x--;
 		start_y++;
 	}
@@ -178,7 +178,7 @@ static void fill_downright(int start_x, int start_y, int end_x, int end_y, int *
 {
 	while (start_x <= end_x && start_y <= end_y)
 	{
-		board[start_x][start_y] += 1;
+		board[start_y][start_x] += 1;
 		start_x++;
 		start_y++;
 	}
@@ -186,11 +186,11 @@ static void fill_downright(int start_x, int start_y, int end_x, int end_y, int *
 
 static void	fill_diagonal(int **board, int *input)
 {
-	if (input[0] > input[2] && input[1] > input[3]) //FIX THIS
+	if (input[0] < input[2] && input[1] > input[3])
 		fill_downleft(input[2], input[3], input[0], input[1], board);
 	//going up right x- y+
 	//use down left with input 2,3 to 0,1
-	else if (input[0] > input[2] && input[1] < input[3])// FIX THIS
+	else if (input[0] > input[2] && input[1] > input[3])
 		fill_downright(input[2], input[3], input[0], input[1], board);
 	//going up left x- y-
 	//use down right with input 2,3 to 0,1
@@ -217,8 +217,8 @@ static void	insert_input(int **board, int **input)
 			fill_y(board, input[x]);
 		else if (input[x][1] == input[x][3])//x-axis
 			fill_x(board, input[x]);
-		// else
-		// 	fill_diagonal(board, input[x]);
+		else
+			fill_diagonal(board, input[x]);
 		x++;
 	}
 }
@@ -251,11 +251,9 @@ int	read_instruct(FILE *fd)
 	board = make_board();
 	input = read_input(fd);
 	// filter_input(input);
-	// insert_input(board, input);
-	// fill_downleft(8, 0, 0, 8, board);
-	// fill_downright(0, 0, 8, 8, board);
-	// count_board(board);
-	print_board(board);
+	insert_input(board, input);
+	count_board(board);
+	// print_board(board);
 	// print_input(input);
 	return (0);
 }
@@ -264,7 +262,7 @@ int	main(void)
 {
 	FILE	*fd;
 
-	fd = fopen("test.txt", "r");
+	fd = fopen("input.txt", "r");
 	read_instruct(fd);
 	fclose(fd);
 }
