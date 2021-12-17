@@ -7,16 +7,10 @@
 # include <math.h>
 # include "../../libft/include/libft.h"
 
-// # define LINE 5
-// # define SIZE 10
+//== TESTS ==//
+# define LINES 10
 
-# define LINE 100
-# define SIZE 100
-
-typedef struct s_basin
-{
-	int	*basins;
-	int	basin_size;
-}	t_basin;
+//==INPUT==//
+# define LINES 106
 
 #endif
