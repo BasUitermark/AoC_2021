@@ -73,7 +73,6 @@ static int	check_change(char *str)
 		comp1++;
 		comp2++;
 	}
-	// printf("%d\n", found);
 	return (found);
 }
 
@@ -109,20 +108,102 @@ static int	check_valid(char *str)
 	return (0);
 }
 
+static unsigned long	calc_missing(char *str)
+{
+	int	i = ft_strlen(str);
+	unsigned long		score = 0;
+
+	// printf("Line: %s\n", str);
+	while (i >= 0)
+	{
+		if (str[i] == '(')
+		{
+			score *= 5;
+			score += 1;
+		}
+		if (str[i] == '[')
+		{
+			score *= 5;
+			score += 2;
+		}
+		if (str[i] == '{')
+		{
+			score *= 5;
+			score += 3;
+		}
+		if (str[i] == '<')
+		{
+			score *= 5;
+			score += 4;
+		}
+		i--;
+	}
+	return (score);
+}
+
+static int cmpfunc( const void* a , const void* b )
+{
+	const unsigned long ai = *( const unsigned long* )a;
+	const unsigned long bi = *( const unsigned long* )b;
+
+	if( ai < bi )
+	{
+		return -1;
+	}
+	else if( ai > bi )
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+
+static void	print_scores(unsigned long *scores, int missing)
+{
+	size_t	i = 0;
+	while (i < missing)
+	{
+		printf("%lu\n", scores[i]);
+		i++;
+	}
+}
+
 static void	check_list(char **list)
 {
 	size_t	line = 0;
-	int		score = 0;
+	size_t	i = 0;
+	int		missing = 0;
+	unsigned long		*scores;
 
 	while (line < LINES)
 	{
 		while (check_change(list[line]))
 		{}
-		if (check_valid(list[line]))
-			score += calc(list[line]);
+		// printf("Line #%d: %s\n", line + 1, list[line]);
+		if (!check_valid(list[line]))
+		{
+			// printf("Line #%d: %s\n", line + 1, list[line]);
+			missing++;
+		}
 		line++;
 	}
-	printf("%d\n", score);
+	line = 0;
+	scores = (unsigned long *)ft_calloc(missing, sizeof(unsigned long));
+	while (line < LINES)
+	{
+		if (!check_valid(list[line]))
+		{
+			scores[i] = calc_missing(list[line]);
+			i++;
+		}
+		line++;
+	}
+	qsort(scores, missing, sizeof(unsigned long), cmpfunc);
+	print_scores(scores, missing);
+	printf("Score: %lu\n", scores[(missing) / 2]);
+
 }
 
 
@@ -139,7 +220,7 @@ int	main(void)
 {
 	FILE	*fd;
 
-	fd = fopen("inputJ.txt", "r");
+	fd = fopen("input.txt", "r");
 	read_instruct(fd);
 
 	fclose(fd);

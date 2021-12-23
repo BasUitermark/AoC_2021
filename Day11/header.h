@@ -7,15 +7,16 @@
 # include <math.h>
 # include "../../libft/include/libft.h"
 
-// //== TESTS ==//
-// # define LINES 10
-// # define LINE_SIZE 26
+// //== TEST1 ==//
+// # define SIZE 5
+// # define DAYS 100
 
-//==INPUT==//
-# define LINES 106
-# define LINE_SIZE 150
+//== TEST2 ==//
+// # define SIZE 10
+// # define DAYS 100
 
-// # define LINES 102
-// # define LINE_SIZE 150
+//== INPUT ==//
+# define SIZE 10
+# define DAYS 250
 
 #endif

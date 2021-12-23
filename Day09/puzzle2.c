@@ -39,7 +39,6 @@ static int	**fill_array(void)
 		line++;
 	}
 	return (array);
-	// printf("%d\n", array[2][10]);
 }
 
 static int	**create_array(FILE *fd)
@@ -64,7 +63,6 @@ static int	**create_array(FILE *fd)
 		column = 1;
 		line++;
 	}
-	// print_array(array);
 	return (array);
 }
 

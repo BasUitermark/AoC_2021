@@ -1,0 +1,31 @@
+[({(<(())[]>[[{[]{<()<>>	[] = 5,2	() = 5,3	{}= 3,0		<> = 3,3
+[(()[<>])]({[<{<<[]>>(		[] = 5,2	() = 5,3	{}= 3,0		<> = 3,3
+{([(<{}[<>[]}>{[]{[(<()>
+(((({<>}<{<{<>}{[]{[]{}
+[[<[([]))<([[{}[[()]]]
+[{[{({}]{}}([{[{{{}}([]
+{<[[]]>}<{[{[{[]{()[[[]
+[<(<(<(<{}))><([]([]()
+<{([([[(<>()){}]>(<<{{
+<{([{{}}[<[[[<>{}]]]>[]]
+
+Brackets can be left open indefinitely
+More open than closed is allowed
+
+Start from back, remember first bracket
+Count open and closed brackets until they are even
+Recursive?
+
+static char	check_pairs(int len, char *string)
+{
+	char	last;
+	size_t	open = 0;
+	size_t	close = 0;
+
+	last = string[len];
+	while (len > 0)
+	{
+		
+		len--;
+	}
+}
