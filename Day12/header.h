@@ -10,9 +10,11 @@
 //== Global Variables ==//
 
 int		paths = 0;
-char	**marked_caves;
+t_dlist	*marked_caves;
 int		marks;
-int		i = 0;
+int		count = 0;
+char	*cave;
+
 
 //== Test 1 ==//
 // # define LINES 7
@@ -30,12 +32,12 @@ int		i = 0;
 # define LINES 21
 # define SIZE 9
 
-#define RED     "\x1b[31m"
-#define GREEN   "\x1b[32m"
-#define YELLOW  "\x1b[33m"
-#define BLUE    "\x1b[34m"
-#define MAGENTA "\x1b[35m"
-#define CYAN    "\x1b[36m"
-#define RESET   "\x1b[0m"
+#define RED		"\x1b[31m"
+#define GREEN	"\x1b[32m"
+#define YELLOW	"\x1b[33m"
+#define BLUE	"\x1b[34m"
+#define MAGENTA	"\x1b[35m"
+#define CYAN	"\x1b[36m"
+#define RESET	"\x1b[0m"
 
 #endif

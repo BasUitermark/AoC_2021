@@ -12,7 +12,7 @@ static void	print_array(char **array)
 	printf("\n");
 }
 
-static void	print_list(t_list *list)
+static void	ft_print_list(t_list *list)
 {
 	while (list)
 	{
@@ -54,53 +54,51 @@ static void fill_array(char **array, FILE *fd)
 
 static void	init_marked(void)
 {
-	marked_caves = (char**)ft_calloc(1, sizeof(char *));
-	marked_caves[0] = (char *)ft_calloc(6, sizeof(char));
-	ft_strlcpy(marked_caves[0], "start", 6);
+	marked_caves = NULL;
+	marked_caves = ft_dlstnew("start");
 }
 
 static void	remove_current(char *current)
 {
-	size_t	i = 0;
+	t_dlist *temp;
 
-	while (i < marks)
+	temp = marked_caves;
+	while (temp != NULL)
 	{
-		if (ft_strncmp(marked_caves[i], current, ft_strlen(current)) == 0)
+		if (ft_strncmp(temp->content, current, ft_strlen(current)) == 0)
+		{
+			ft_dlstdel_node(&temp, temp);
 			break ;
-		i++;
+		}
+		temp = temp->next;
 	}
-	free(marked_caves[i]);
-	marked_caves[i] = NULL;
 }
 
 static int	check_marked(char *current)
 {
-	size_t	i = 1;
 	size_t	len = 0;
+	size_t	c = 0;
+	t_dlist	*temp;
 
 	len = ft_strlen(current);
-	// printf("len: %d\n", len);
-	// printf("Getting checked: %s\n", current);
-	while (i <= marks)
+	temp = marked_caves;
+	while (temp != NULL)
 	{
-		// printf("help");
-		if (ft_strncmp(current, marked_caves[i], len) == 0)
-			return (1);
-		i++;
+		if (ft_strncmp(current, temp->content, len) == 0)
+			c++;
+		temp = temp->next;
 	}
+	if (c == 1)
+		return (1);
+	if (c == 2)
+		return (2);
 	return (0);
 }
 
 static void	mark(char *current)
 {
-	size_t	len = 0;
-
 	marks++;
-	len = ft_strlen(current);
-	// printf("len: %d\n", len);
-	marked_caves = (char **)realloc(marked_caves, (marks + 2) * sizeof(char *));
-	marked_caves[marks] = (char *)ft_calloc(len + 1, sizeof(char));
-	strcpy(marked_caves[marks], current);
+	ft_dlstadd_back(&marked_caves, ft_dlstnew(current));
 }
 
 static char	*scan_str1(char *array)
@@ -182,26 +180,31 @@ static void	search_paths(char *current, char **array)
 	t_list	*neighbors;
 
 
-	//check if current is end, if it is we have completed a path
+	// check if current is end, if it is we have completed a path
 	if (ft_strncmp(current, "end", 3) == 0)
 	{
-		// printf(RED "End of branch\n" RESET);
+		printf(RED "End of branch\n" RESET);
 		paths++;
 		return ;
 	}
 
-	// printf(CYAN"Current node: <%s>\n"RESET, current);
+	printf(CYAN"Current node: <%s>\n"RESET, current);
 	// printf(GREEN"Path count: %d\n"RESET, paths);
-	// printf("Marks: %d\n", marks);
+	printf("Marks: %d\n", marks);
 	// printf("Marked caves:\n");
-	// print_array(&marked_caves[1]);
-
-	//check if current is a small cave and is marked
-	//if it is marked, that means this isn't a valid path
-	if (ft_strncmp(current, "start", 5) != 0 && ft_islower(current[0]) && check_marked(current) == 1)
+	// ft_printdlist(marked_caves);
+	if (ft_strncmp(current, "start", 5) != 0 && ft_islower(current[0]))
 	{
-		// printf("<%s> is marked!\n", current);
-		return ;
+		if (check_marked(current) == 2 && ft_strncmp(current, cave, ft_strlen(current)) == 0)
+		{
+			// printf("<%s> is double marked!\n", current);
+			return ;
+		}
+		else if (check_marked(current) == 1 && count == 1)
+		{
+			// printf("<%s> is marked!\n", current);
+			return ;
+		}
 	}
 
 	//if it is not marked, mark the cave
@@ -209,6 +212,11 @@ static void	search_paths(char *current, char **array)
 	{
 		// printf("Added <%s> to marked\n", current);
 		mark(current);
+		if (check_marked(current) == 2)
+		{
+			count = 1;
+			cave = ft_strdup(current);
+		}
 	}
 	//make an array of all the neighbors of current
 	neighbors = search_neighbors(current, array);
@@ -224,24 +232,30 @@ static void	search_paths(char *current, char **array)
 		}
 
 		// printf("Neighbors:\n");
-		// print_list(neighbors);
+		// ft_print_list(neighbors);
 
-		// printf(CYAN"Next node: <%s>\n\n"RESET, neighbors->content);
+		printf(CYAN"Next node: <%s>\n\n"RESET, neighbors->content);
 		search_paths(neighbors->content, array);
-		// printf(CYAN"Returned to node: <%s>\n"RESET, current);
+		printf(CYAN"Returned to node: <%s>\n"RESET, current);
 		neighbors = neighbors->next;
 	}
 	// printf("All neighbors checked\n");
 
-	// printf(RED"Exiting branch\n"RESET);
+	printf(RED"Exiting branch\n"RESET);
 	//when a single path has been completed remove cave from list
 	if (ft_strncmp(current, "start", 5) != 0 && ft_islower(current[0]))
 	{
 		// printf("Removing <%s> from marked\n", current);
+		if (check_marked(current) == 2)
+		{
+			count = 0;
+			free (cave);
+			cave = NULL;
+		}
 		remove_current(current);
 		marks--;
 	}
-	// printf(GREEN"Branch exited successfully!\n"RESET);
+	printf(GREEN"Branch exited successfully!\n"RESET);
 	ft_lstclear(&neighbors, free);
 	return ;
 }
